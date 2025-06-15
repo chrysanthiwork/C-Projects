@@ -1,49 +1,39 @@
 ﻿Console.WriteLine("Hello!");
 Console.WriteLine("Input the first number:");
-var firstAsText = Console.ReadLine();
-var number1 = int.Parse(firstAsText);
+
+string userFirstNumber = Console.ReadLine();
+int firstNumber = int.Parse(userFirstNumber);
 
 Console.WriteLine("Input the second number:");
-var secondAsText = Console.ReadLine();
-var number2 = int.Parse(secondAsText);
+string userSecondNumber = Console.ReadLine();
+int secondNumber = int.Parse(userSecondNumber);
 
-Console.WriteLine("What do you want to do?");
-Console.WriteLine("[A]dd numbers");
-Console.WriteLine("[S]ubtract numbers");
-Console.WriteLine("[M]ultiply numbers");
-var choice = Console.ReadLine();
+Console.WriteLine("What do you want to do with those numbers?");
+Console.WriteLine("[A]dd");
+Console.WriteLine("[S]ubtract");
+Console.WriteLine("[M]ultiply");
 
-if(EqualsCaseInsensitive(choice, "A"))
-{
-    var sum = number1 + number2;
-    PrintFinalEquation(number1, number2, sum, "+");
-}
-else if (EqualsCaseInsensitive(choice, "S"))
-{
-    var difference = number1 - number2;
-    PrintFinalEquation(number1, number2, difference, "-");
-}
-else if (EqualsCaseInsensitive(choice, "M"))
-{
-    var multiplied = number1 * number2;
-    PrintFinalEquation(number1, number2, multiplied, "*");
-}
-else
-{
-    Console.WriteLine("Invalid choice!");
-}
+string userCommandChoice = Console.ReadLine();
+calculateResults(firstNumber, secondNumber, userCommandChoice);
 
-Console.WriteLine("Press any key to close.");
+Console.WriteLine("Press any key to close");
 Console.ReadKey();
 
-void PrintFinalEquation(
-    int number1, int number2, int result, string @operator)
-{
-    Console.WriteLine(
-        number1 + " " + @operator + " " + number2 + " = " + result);
-}
-
-bool EqualsCaseInsensitive(string left, string right)
-{
-    return left.ToUpper() == right.ToUpper();
+void calculateResults(int firstNumber, int secondNumber, string command) { 
+    if(command == "A" || command == "a")
+    {
+        Console.WriteLine("The addition of the given numbers gives the result of: " + (firstNumber + secondNumber));
+    }
+    else if (command == "S" || command == "s")
+    {
+        Console.WriteLine("The substraction of the given numbers gives the result of: " + (firstNumber - secondNumber));
+    }
+    else if (command == "M" || command == "m")
+    {
+        Console.WriteLine("The multiplication of the given numbers gives the result of: " + (firstNumber * secondNumber));
+    }
+    else
+    {
+        Console.WriteLine("Invalid option");
+    }
 }
