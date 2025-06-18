@@ -1,6 +1,9 @@
-﻿public class Recipes
+﻿using System.Xml.Linq;
+
+public class Recipes
 {
-    private List<Ingredient> ingredients = new List<Ingredient>();
+    public List<Ingredient> Ingredients { get; set; } = new List<Ingredient>();
+
 
     private static readonly List<Ingredient> _ingredients = new List<Ingredient>
     {
@@ -16,9 +19,9 @@
 
     public void PrintFullRecipe()
     {
-        if (ingredients.Any()) {
+        if (Ingredients.Any()) {
             Console.WriteLine("Recipe added:");
-            foreach (var ingredient in ingredients)
+            foreach (var ingredient in Ingredients)
             {
                 Console.WriteLine($"{ingredient.Name}: {ingredient.Instructions}");
             }
@@ -40,13 +43,14 @@
         var ingredient = FindIngredientById(id);
         if (ingredient != null)
         {
-            ingredients.Add(ingredient);
+            Ingredients.Add(ingredient);
         }
         else
         {
             Console.WriteLine("Ingredient not found.");
         }
     }
+
 
     public static void PrintAvailableIngredients()
     {
@@ -56,4 +60,16 @@
             Console.WriteLine($"ID: {ingredient.ID}, Name: {ingredient.Name}");
         }
     }
+
+    public override string ToString()
+    {
+        // Προσαρμόστε ανάλογα με τα properties της συνταγής
+        string result = $"Ingredients:\n";
+        foreach (var ingredient in Ingredients)
+        {
+            result += $"- {ingredient.Name}: {ingredient.Instructions}\n";
+        }
+        return result;
+    }
+
 }

@@ -1,12 +1,21 @@
-﻿public abstract class Ingredient
-{
+﻿using System.Text.Json.Serialization;
 
+[JsonPolymorphic(TypeDiscriminatorPropertyName = "$type")]
+[JsonDerivedType(typeof(WheatFlour), "WheatFlour")]
+[JsonDerivedType(typeof(CoconutFlour), "CoconutFlour")]
+[JsonDerivedType(typeof(Butter), "Butter")]
+[JsonDerivedType(typeof(Chocolate), "Chocolate")]
+[JsonDerivedType(typeof(Sugar), "Sugar")]
+[JsonDerivedType(typeof(Cardamom), "Cardamom")]
+[JsonDerivedType(typeof(Cinnamon), "Cinnamon")]
+[JsonDerivedType(typeof(CocoaPowder), "CocoaPowder")]
+public abstract class Ingredient
+{
     public abstract int ID { get; }
     public abstract string Name { get; }
     public abstract string Instructions { get; }
-
-    
 }
+
 
 public class WheatFlour : Ingredient
 {
